@@ -8,6 +8,6 @@ def twoSum(nums, target):
     map = {}
     for i in range(len(nums)):
         comp = target - nums[i]
-        if  map.get(comp) is not None:
+        if comp in map:
             return [map[comp], i]
         map[nums[i]] = i
