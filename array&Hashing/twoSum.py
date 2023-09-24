@@ -4,3 +4,10 @@ def twoSum(nums, target):
             if nums[i] + nums[j] == target:
                 return [i, j]
             
+def twoSum(nums, target):
+    map = {}
+    for i in range(len(nums)):
+        comp = target - nums[i]
+        if  map.get(comp) is not None:
+            return [map[comp], i]
+        map[nums[i]] = i
