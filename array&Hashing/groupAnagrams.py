@@ -25,13 +25,13 @@ def groupAnagrams(strs: list):
 strs = ["eat","tea","tan","ate","nat","bat"]
 print(groupAnagrams(strs))
 
-# def groupAnagramsOptimal(strs: list):
-#     res = defaultdict(list)
-#     for n in strs:
-#         count = [0] * 26
-#         for c in n:
-#             count[ord(c) - ord('a')] += 1
-#         res[tuple(count)].append(n)
-#     return res.values()
+def groupAnagramsOptimal(strs: list):
+    res = defaultdict(list)
+    for n in strs:
+        count = [0] * 26
+        for c in n:
+            count[ord(c) - ord('a')] += 1
+        res[tuple(count)].append(n)
+    return res.values()
 
-# print(groupAnagramsOptimal(strs))
+print(groupAnagramsOptimal(strs))
