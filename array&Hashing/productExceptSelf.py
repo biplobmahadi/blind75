@@ -27,3 +27,14 @@ def productExceptSelf2(nums):
                 product = all / i
                 ans.append(product)
     return ans
+
+def productExceptSelfOptimal(nums):
+    ans = []
+    pre, post = 1, 1
+    for i in nums:
+        ans.append(pre)
+        pre *= i
+    for i in range(len(nums)-1, -1, -1):
+        ans[i] *= post
+        post *= nums[i]
+    return ans
