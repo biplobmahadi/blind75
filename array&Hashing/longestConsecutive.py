@@ -19,3 +19,15 @@ def longestConsecutive(nums):
 
 nums = [1,2,0,1]
 print(longestConsecutive(nums))
+
+def longestConsecutiveOptimal(nums):
+    map, total = set(nums), 0
+    for n in nums:
+        if n-1 not in map:
+            count = 0
+            while n+count in map:
+                count+=1
+            total = max(total, count)
+    return total
+
+print(longestConsecutiveOptimal(nums))
