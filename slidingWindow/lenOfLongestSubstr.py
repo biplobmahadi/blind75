@@ -20,5 +20,16 @@ def lenOfLongestSubstrOptimal(s):
         hashSet.add(s[r])
     return longest
 
+def lenOfLongest(s):
+    hashMap, longest, l = {}, 0, 0
+    for r in range(len(s)):
+        seenVal = hashMap.get(s[r])
+        if s[r] in hashMap and seenVal>=l:
+            l = seenVal + 1
+        longest = max(longest, r-l+1)
+        hashMap[s[r]] = r
+    return longest
+
 print(lenOfLongestSubstr('abcabcbb'))
 print(lenOfLongestSubstrOptimal('abcabcbb'))
+print(lenOfLongest('abcabcbb'))
