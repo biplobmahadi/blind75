@@ -3,12 +3,8 @@ def validParentheses(s):
     for c in s:
         if map.get(c):
             stack.append(map[c])
-        else:
-            if len(stack) > 0:
-                popped = stack.pop()
-                if popped != c:
-                    return False
-            else: return False
+        elif not stack or stack.pop() != c:
+            return False
     return len(stack) == 0
 
-print(validParentheses(')({})'))
+print(validParentheses('({})('))
