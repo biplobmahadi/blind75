@@ -16,3 +16,25 @@ def reorder(head: ListNode):
         curr.next = tail
         curr = nxt
         if tail: tail.next = nxt
+
+def reorderOptimal(head: ListNode):
+    slow = fast = head
+    while fast and fast.next:
+        slow = slow.next
+        fast = fast.next.next
+    second = slow.next
+    slow.next = None
+    prev = None
+    while second:
+        nxt = second.next
+        second.next = prev
+        prev = second
+        second = nxt
+    second = prev
+    first = head 
+    while second:
+        nxtFirst, nxtSecond = first.next, second.next
+        first.next = second
+        second.next = nxtFirst
+        second = nxtSecond
+        first = nxtFirst
