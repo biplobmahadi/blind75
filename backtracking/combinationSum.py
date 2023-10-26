@@ -16,3 +16,20 @@ def combinationSum(candidates, target):
     return res
 
 print(combinationSum([2, 5, 3], 8))
+
+def combinationSum2(candidates, target):
+    res = []
+    def solve(i, total, list):
+        if total == target:
+            res.append(list.copy())
+            return
+        if i == len(candidates) or total > target:
+            return
+        list.append(candidates[i])
+        solve(i, total+candidates[i], list)
+        list.pop()
+        solve(i+1, total, list)
+    solve(0, 0, [])
+    return res
+
+print(combinationSum2([2, 5, 3], 8))
