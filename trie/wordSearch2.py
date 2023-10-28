@@ -30,3 +30,46 @@ board = [["o","a","a","n"],["e","t","a","e"],["i","h","k","r"],["i","f","l","v"]
 words = ["oath","pea","eat","rain"]
 
 print(findWords(board, words))
+
+class TrieNode:
+    def __init__(self) -> None:
+        self.child = {}
+        self.word = False
+
+class WordDictionary:
+    def __init__(self):
+        self.root = TrieNode()
+
+    def addWord(self, word: str) -> None:
+        curr = self.root
+        for c in word:
+            if c not in curr.child:
+                curr.child[c] = TrieNode()
+            curr = curr.child[c]
+        curr.word = True
+
+def findWords2(board, words):
+    ans = set()
+    def dfs(node, r, c, res):
+        if (r<0 or c<0 or r>=len(board) or c>=len(board[0]) or
+            board[r][c] == '#' or board[r][c] not in node.child):
+            return
+        tmp = board[r][c]
+        res += board[r][c]
+        node = node.child[tmp]
+        if node.word: ans.add(res)
+        board[r][c] = '#'
+        dfs(node, r+1, c, res)
+        dfs(node, r-1, c, res)
+        dfs(node, r, c+1, res)
+        dfs(node, r, c-1, res)
+        board[r][c] = tmp
+    trie = WordDictionary()
+    for n in words:
+        trie.addWord(n)
+    for r in range(len(board)):
+        for c in range(len(board[0])):
+            dfs(trie.root, r, c, '')
+    return list(ans)
+
+print(findWords2(board, words))
