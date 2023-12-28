@@ -31,25 +31,25 @@ pre = [[1, 0], [2, 1], [5, 2], [0, 3], [4, 3], [3, 5], [4, 5]]
 
 print(canFinish(n, pre))
 
-# def canFinishOptimal(numCourses, prerequisites):
-#     adj = [[] for _ in range(numCourses)]
-#     indegree = [0] * numCourses
-#     for d, s in prerequisites:
-#         adj[s].append(d)
-#         indegree[d] += 1
-#     s = []
-#     for i, n in enumerate(indegree):
-#         if n == 0:
-#             s.append(i)
-#     count = 0
-#     while s:
-#         p = s.pop()
-#         count+=1
-#         for node in adj[p]:
-#             indegree[node] -= 1
-#             if indegree[node] == 0:
-#                 s.append(node)
+def canFinishOptimal(numCourses, prerequisites):
+    adj = [[] for _ in range(numCourses)]
+    indegree = [0] * numCourses
+    for d, s in prerequisites:
+        adj[s].append(d)
+        indegree[d] += 1
+    s = []
+    for i, n in enumerate(indegree):
+        if n == 0:
+            s.append(i)
+    count = 0
+    while s:
+        p = s.pop()
+        count+=1
+        for node in adj[p]:
+            indegree[node] -= 1
+            if indegree[node] == 0:
+                s.append(node)
 
-#     return count == numCourses
+    return count == numCourses
 
-# print(canFinishOptimal(n, pre))
+print(canFinishOptimal(n, pre))
