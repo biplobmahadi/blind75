@@ -23,3 +23,15 @@ def uniqPaths(m, n):
     return dp[0][0]
 
 print(uniqPaths(3, 7))
+
+def uniqPathsMemo(m, n):
+    dpLast = [0] * (n)
+    dp = [0] * (n)
+    dp[n-1] = 1
+    for r in range(m-1, -1,-1):
+        for c in range(n-2, -1,-1):
+            dp[c] = dpLast[c] + dp[c+1]
+        dpLast = dp
+    return dp[0]
+
+print(uniqPathsMemo(3, 7))
