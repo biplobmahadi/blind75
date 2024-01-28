@@ -10,3 +10,18 @@ def lcs(text1, text2):
     return rec(0, 0)
 
 print(lcs('abcde', 'ace'))
+
+def lcsBottom(text1, text2):
+    M, N = len(text1), len(text2)
+    dp = [0] * (N+1)
+    for i in range(M-1, -1, -1):
+        newDp = [0] * (N+1)
+        for j in range(N-1, -1, -1):
+            if text1[i] == text2[j]:
+                newDp[j] = 1+dp[j+1]
+            else:
+                newDp[j] = max(newDp[j+1], dp[j])
+        dp = newDp
+    return dp[0]
+
+print(lcsBottom('abcde', 'ace'))
