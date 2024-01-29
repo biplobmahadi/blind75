@@ -9,8 +9,15 @@ def canJump(nums):
                 return True
         dp[i] = False
         return False
-    print(dp)
     return rec(0)
 
 print(canJump([2,3,1,1,4]))
 
+def canJumpGreedy(nums):
+    goal = len(nums) - 1
+    for i in range(len(nums)-1, -1, -1):
+        if nums[i] + i >= goal:
+            goal = i
+    return goal == i
+
+print(canJumpGreedy([2,3,1,1,4]))
